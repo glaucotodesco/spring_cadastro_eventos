@@ -30,7 +30,7 @@
             <div class="card shadow-sm rounded" style="margin-top: 20px;" th:each="evento: ${eventos}">
                 <div class="card-body">
                     <p class="card-title d-flex" style="font-weight: bold; color: black; padding-top: 5px;">
-                        <i class="material-icons">event</i>Evento: <span th:text="${evento.nome}"></span>
+                        <a th:href="@{'/evento/' + ${evento.id}}" class="d-flex"> <i class="material-icons">event</i>Evento: <span th:text="${evento.nome}"></span></a>
                     </p>
                     <p class="card-title d-flex"> <i class="material-icons">place</i>Local: <span th:text="${evento.local}"></span></p>
                     <p class="card-title d-flex"> <i class="material-icons">date_range</i>Data:<span th:text="${evento.data}"></span></p>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <title>Gerenciamento de Eventos</title>
+</head>
+
+<body>
+    <header>
+        <h1 class="text-center">Lista de Eventos</h1>
+        <a href="/cadastrarEvento">
+            <button type="button" class="btn btn-primary d-flex">
+                <i class="material-icons">add</i> <span>Cadastrar Evento</span>
+            </button>
+        </a>
+    </header>
+
+    <section>
+        <div class="container" style="padding-bottom: 30px">
+            <div class="card shadow-sm rounded" style="margin-top: 20px;" th:each="evento: ${eventos}">
+                <div class="card-body">
+                    <p class="card-title d-flex" style="font-weight: bold; color: black; padding-top: 5px;">
+                        <i class="material-icons">event</i>Evento: <span th:text="${evento.nome}"></span>
+                    </p>
+                    <p class="card-title d-flex"> <i class="material-icons">place</i>Local: <span th:text="${evento.local}"></span></p>
+                    <p class="card-title d-flex"> <i class="material-icons">date_range</i>Data:<span th:text="${evento.data}"></span></p>
+                    <p class="card-title d-flex"> <i class="material-icons">access_time</i>Horário:<span th:text="${evento.horario}"></span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <header>
+
+    </header>
+
+
+</body>
+
+</html>

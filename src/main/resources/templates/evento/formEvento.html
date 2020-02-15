@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Evento</title>
+</head>
+
+<body>
+
+    <header>
+        <h1 class="text-center">Cadastro de Eventos</h1>
+        <a href="/eventos">
+            <button type="button" class="btn btn-primary d-flex">
+                <i class="material-icons">list</i> <span>Lista de Eventos</span>
+            </button>
+        </a>
+    </header>
+
+    <section>
+        
+        <div class="container" style="padding-bottom: 30px">
+            <form method="post" class="from-group">
+                <div><label for="idNome">Nome: </label>
+                    <input type="text" class="form-control" value="" name="nome" id="idNome" />
+                </div>
+
+                <div><label for="idLocal">Local: </label>
+                    <input type="text" class="form-control" value="" name="local" id="idLocal" />
+                </div>
+
+                <div><label for="idData">Data: </label>
+                    <input type="date" class="form-control" value="" name="data" id="idData" />
+                </div>
+
+                <div><label for="idHorario">Horario: </label>
+                    <input type="time" class="form-control" value="" name=horario id="idHorario" />
+                </div>
+
+                <div>
+                    <br>
+                    <button type="button" class="btn btn-primary d-flex">
+                        <i class="material-icons">add</i> <span>Salvar</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <header>
+
+    </header>
+</body>
+
+</html>

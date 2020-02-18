@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    
+
     <header>
         <h1 class="text-center">Evento Detalhes</h1>
         <a href="/evento">
@@ -27,32 +27,37 @@
     </header>
 
     <section>
-        <section>
-            <div class="container" style="padding-bottom: 30px">
-                <div class="card shadow-sm rounded" style="margin-top: 20px;" th:each="evento: ${evento}">
-                    <div class="card-body">
-                        <p class="card-title d-flex" style="font-weight: bold; color: black; padding-top: 5px;">
-                           <i class="material-icons">event</i>Evento: <span th:text="${evento.nome}"></span></a>
-                        </p>
-                        <p class="card-title d-flex"> <i class="material-icons">place</i>Local: <span th:text="${evento.local}"></span></p>
-                        <p class="card-title d-flex"> <i class="material-icons">date_range</i>Data:<span th:text="${evento.data}"></span></p>
-                        <p class="card-title d-flex"> <i class="material-icons">access_time</i>Horário:<span th:text="${evento.horario}"></span></p>
-                    </div>
+        <div class="container" style="padding-bottom: 30px">
+            <div class="card shadow-sm rounded" style="margin-top: 20px;" th:each="evento: ${evento}">
+                <div class="card-body">
+                    <p class="card-title d-flex" style="font-weight: bold; color: black; padding-top: 5px;">
+                        <i class="material-icons">event</i>Evento: <span th:text="${evento.nome}"></span></a>
+                    </p>
+                    <p class="card-title d-flex"> <i class="material-icons">place</i>Local: <span
+                            th:text="${evento.local}"></span></p>
+                    <p class="card-title d-flex"> <i class="material-icons">date_range</i>Data:<span
+                            th:text="${evento.data}"></span></p>
+                    <p class="card-title d-flex"> <i class="material-icons">access_time</i>Horário:<span
+                            th:text="${evento.horario}"></span></p>
                 </div>
             </div>
-        
+        </div>
     </section>
 
     <section>
-        
         <div class="container" style="padding-bottom: 80px">
+    
             <h3>Cadastrar Convidados</h3>
-            <form method="post" class="from-group">
+            <form method="post" class="from-group" th:object="${convidado}">
+                <div th:text="${#fields.hasErrors('*')}">errors</div>
                 <div><label for="idNome">Nome: </label>
-                    <input type="text" class="form-control" value="" name="nome" id="idNome" />
+                    <input type="text" class="form-control" th:field="*{nome}" />
+                    
+
                 </div>
                 <div><label for="idRg">RG: </label>
                     <input type="text" class="form-control" value="" name="rg" id="idRg" />
+
                 </div>
                 <div>
                     <br>
@@ -64,9 +69,25 @@
         </div>
     </section>
 
-    <header>
-
-    </header>
-
+    <section>
+        <div class="container" style="padding-bottom: 80px">
+            <h3>Lista de Convidados</h3>
+            <table class="container table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">RG</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="convidado: ${convidados}">
+                        <td><span th:text="${convidado.nome}"></span></td>
+                        <td><span th:text="${convidado.rg}"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 </body>
+
 </html>

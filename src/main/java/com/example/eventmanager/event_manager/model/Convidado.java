@@ -5,6 +5,11 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+
 
 /**
  * Convidado
@@ -16,7 +21,12 @@ public class Convidado  implements Serializable{
     private static final long serialVersionUID = 1L;
    
     @Id
+    @NotEmpty
+    @Min(5)
     private String rg;
+
+    @NotEmpty
+    @Size(min=2, max=40)
     private String nome;
     
     @ManyToOne

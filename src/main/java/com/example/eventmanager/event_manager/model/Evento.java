@@ -79,5 +79,11 @@ public class Evento implements Serializable{
         this.convidados = convidados;
     }
 
+    @Override
+    public String toString() {
+        return "Evento [convidados=" + convidados + ", data=" + data + ", horario=" + horario + ", id=" + id
+                + ", local=" + local + ", nome=" + nome + "]";
+    }
+
     
 }

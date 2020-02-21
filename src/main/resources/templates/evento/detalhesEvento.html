@@ -8,7 +8,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+        
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
@@ -16,7 +22,7 @@
 </head>
 
 <body>
-
+    <script src="/js/util.js"></script>
     <header>
         <h1 class="text-center">Evento Detalhes</h1>
         <a href="/evento">
@@ -46,18 +52,19 @@
 
     <section>
         <div class="container" style="padding-bottom: 80px">
-    
             <h3>Cadastrar Convidados</h3>
-            <form method="post" class="from-group" th:object="${convidado}">
-                <div th:text="${#fields.hasErrors('*')}">errors</div>
-                <div><label for="idNome">Nome: </label>
-                    <input type="text" class="form-control" th:field="*{nome}" />
-                    
-
+            <form method="post" class="needs-validation" th:object="${convidado}">
+                <div th:insert="util/fragments/message.html :: msg"> </div>
+                <div>
+                    <label for="idNome">Nome: </label>
+                    <input type="text" id="idNome" class="form-control" th:field="*{nome}"
+                            placeholder="Digite seu nome">
+                        <div class="alert alert-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
                 </div>
+                
                 <div><label for="idRg">RG: </label>
-                    <input type="text" class="form-control" value="" name="rg" id="idRg" />
-
+                    <input type="text" class="form-control"  name="rg" id="idRg" th:field="*{rg}" placeholder="Digite seu RG" />
+                    <div  class="alert alert-danger" th:if="${#fields.hasErrors('rg')}" th:errors="*{rg}"></div>
                 </div>
                 <div>
                     <br>
@@ -68,7 +75,6 @@
             </form>
         </div>
     </section>
-
     <section>
         <div class="container" style="padding-bottom: 80px">
             <h3>Lista de Convidados</h3>

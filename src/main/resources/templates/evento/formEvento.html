@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org" <!-- Bootstrap CSS -->
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
 
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -13,7 +25,7 @@
 </head>
 
 <body>
-
+    <script src="/js/util.js"></script>
     <header>
         <h1 class="text-center">Cadastro de Eventos</h1>
         <a href="/evento">
@@ -24,30 +36,41 @@
     </header>
 
     <section>
-        
+
         <div class="container" style="padding-bottom: 80px">
-            <form method="post" class="from-group">
-             
-                <div><label for="idNome">Nome: </label>
-                    <input type="text" class="form-control" value="" name="nome" id="idNome" />
+            <form method="post" class="from-group" th:object="${evento}">
+                
+                <div th:insert="util/fragments/message.html :: msg"> </div>
+                <div>
+                    <label for="idNome">Nome: </label>
+                    <input type="text" id="idNome" class="form-control" th:field="*{nome}"
+                        placeholder="Digite o nome do evento">
+                    <div class="alert alert-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">
                 </div>
 
-                <div><label for="idLocal">Local: </label>
-                    <input type="text" class="form-control" value="" name="local" id="idLocal" />
+
+                <div>
+                    <label for="idLocal">Local: </label>
+                    <input type="text" id="idLocal" class="form-control" th:field="*{local}"
+                            placeholder="Digite o local do evento">
+                        <div class="alert alert-danger" th:if="${#fields.hasErrors('local')}" th:errors="*{local}">
                 </div>
 
                 <div class="row">
-                   <div class="col">
-                    <label for="idData">Data: </label>
-                    <input type="date" class="form-control" value="" name="data" id="idData" />
-                   </div>
-                   <div class="col">
-                    <label for="idHorario">Horario: </label>
-                    <input type="time" class="form-control" value="" name=horario id="idHorario" />
-                    </div> 
-                </div>
-
-                <div>
+                   
+                    <div class="col">
+                        <label for="idData">Data: </label>
+                        <input type="date" id="idData" class="form-control" th:field="*{data}"
+                                placeholder="Digite a data do evento">
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('data')}" th:errors="*{data}"> </div>
+                    </div>
+    
+                    <div class="col">
+                        <label for="idHorario">Horario: </label>
+                        <input type="time" id="idHorario" class="form-control" th:field="*{horario}"
+                                placeholder="Digite o horario do evento">
+                            <div class="alert alert-danger" th:if="${#fields.hasErrors('horario')}" th:errors="*{horario}"></div>
+                    </div>
                 </div>
 
                 <div>

@@ -1,6 +1,5 @@
 package com.example.eventmanager.event_manager.controller;
 
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -26,41 +24,50 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * EventoController
  */
 @Controller
-public class EventoController {
+public class ConvidadoController {
 
     @Autowired
     private EventoRepository eventoRepository;
 
-  
-    @GetMapping("/cadastrarEvento")
-    public String form(Model model) 
-    {
-        model.addAttribute("evento", new Evento());
-        return "evento/formEvento";
+    @Autowired
+    private ConvidadoRepository convidadoRepository;
+
+
+    
+      
+    @ModelAttribute
+    void supplyModel(@PathVariable("id") long id, Model model) {
+        Evento evento = eventoRepository.findById(id).get();
+        model.addAttribute("evento", evento);
+        model.addAttribute("convidados", evento.getConvidados());
+        model.addAttribute("convidado",new Convidado());
     }
 
-    @PostMapping("/cadastrarEvento")
-    public String form(final @Valid Evento evento,  final BindingResult bindingResult, RedirectAttributes attributes) {
+    @GetMapping("/evento/{id}")
+    public String detatlheEvento(@PathVariable("id") final long id, Model model) {
+        return "evento/detalhesEvento";
+    }
+
+    @PostMapping("/evento/{id}")
+    public String cadastrarConvidado(@PathVariable("id") final long id, @Valid Convidado convidado,
+            final BindingResult bindingResult, RedirectAttributes attributes) {
         
+        final Evento evento = eventoRepository.findById(id).get();
+
         if (bindingResult.hasErrors()) {
-            return "/evento/formEvento";
+            return "evento/detalhesEvento";
         }
         else
         {
-            eventoRepository.save(evento);
             attributes.addFlashAttribute("sucesso", "true");
-            return "redirect:/cadastrarEvento";
+            convidado.setEvento(evento);
+            convidadoRepository.save(convidado);
+            return "redirect:/evento/{id}";
         }
+        
+        
+        
+        
     }
-
-    @GetMapping("/evento")
-    public ModelAndView listaEventos() {
-        final ModelAndView model = new ModelAndView("index");
-        final List<Evento> eventos = eventoRepository.findAll();
-        model.addObject("eventos", eventos);
-        return model;
-    }
-
-  
 
 }

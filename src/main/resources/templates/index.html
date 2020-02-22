@@ -17,33 +17,53 @@
 
 <body>
     <header>
-        <h1 class="text-center">Lista de Eventos</h1>
-        <a href="/cadastrarEvento">
-            <button type="button" class="btn btn-primary d-flex">
-                <i class="material-icons">add</i> <span>Cadastrar Evento</span>
-            </button>
-        </a>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Eventos</a>
+            <div class="navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cadastrarEvento">
+                            <button class="btn btn-primary d-flex" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="material-icons">add</i> <span>Novo</span>
+                        </button>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/evento">
+                            <button class="btn btn-primary d-flex" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="material-icons">list</i> <span>Listar</span>
+                        </button>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </nav>
     </header>
 
     <section>
-      
         <div class="container" style="padding-bottom: 30px">
+            <h3>Eventos Cadastrados</h3>
             <div class="card shadow-sm rounded" style="margin-top: 20px;" th:each="evento: ${eventos}">
                 <div class="card-body">
                     <p class="card-title d-flex" style="font-weight: bold; color: black; padding-top: 5px;">
-                        <a th:href="@{'/evento/' + ${evento.id}}" class="d-flex"> <i class="material-icons">event</i>Evento: <span th:text="${evento.nome}"></span></a>
+                        <a th:href="@{'/evento/' + ${evento.id}}" class="d-flex"> <i
+                                class="material-icons">event</i>Evento: <span th:text="${evento.nome}"></span></a>
                     </p>
-                    <p class="card-title d-flex"> <i class="material-icons">place</i>Local: <span th:text="${evento.local}"></span></p>
-                    <p class="card-title d-flex"> <i class="material-icons">date_range</i>Data:<span th:text="${evento.data}"></span></p>
-                    <p class="card-title d-flex"> <i class="material-icons">access_time</i>Horário:<span th:text="${evento.horario}"></span></p>
+                    <p class="card-title d-flex"> <i class="material-icons">place</i>Local: <span
+                            th:text="${evento.local}"></span></p>
+                    <p class="card-title d-flex"> <i class="material-icons">date_range</i>Data:<span
+                            th:text="${evento.data}"></span></p>
+                    <p class="card-title d-flex"> <i class="material-icons">access_time</i>Horário:<span
+                            th:text="${evento.horario}"></span></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <header>
-
-    </header>
+    
 
 
 </body>

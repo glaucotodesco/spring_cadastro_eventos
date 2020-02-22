@@ -24,12 +24,22 @@
 <body>
     <script src="/js/util.js"></script>
     <header>
-        <h1 class="text-center">Evento Detalhes</h1>
-        <a href="/evento">
-            <button type="button" class="btn btn-primary d-flex">
-                <i class="material-icons">list</i> <span>Lista de Eventos</span>
-            </button>
-        </a>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Eventos</a>
+            <div class="navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/evento">
+                            <button class="btn btn-primary d-flex" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="material-icons">list</i> <span>Listar</span>
+                        </button>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </nav>
     </header>
 
     <section>
@@ -54,7 +64,7 @@
         <div class="container" style="padding-bottom: 80px">
             <h3>Cadastrar Convidados</h3>
             <form method="post" class="needs-validation" th:object="${convidado}">
-                <div th:insert="util/fragments/message.html :: msg"> </div>
+                <div th:insert="util/fragments/message.html :: msg(text='Convidado Cadastrado!')"> </div>
                 <div>
                     <label for="idNome">Nome: </label>
                     <input type="text" id="idNome" class="form-control" th:field="*{nome}"

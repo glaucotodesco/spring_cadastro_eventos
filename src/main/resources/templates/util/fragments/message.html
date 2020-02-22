@@ -1,8 +1,8 @@
 
-<div th:fragment="msg" th:if="${sucesso}" class="alert alert-success" role="alert">
+<div th:fragment="msg(text)" th:if="${sucesso}" class="alert alert-success" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
-    <strong>Successo!</strong> Evento Cadastrado!
+    <strong>Successo!</strong> <span th:text="${text}"></span>
 </div>
 
 

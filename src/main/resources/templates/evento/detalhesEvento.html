@@ -8,12 +8,16 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+       
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
         
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -101,21 +105,38 @@
                         <td><span th:text="${convidado.nome}"></span></td>
                         <td><span th:text="${convidado.rg}"></span></td>
                         <td>
-                            <a th:href="@{'/removerConvidado/' + ${evento.id} + '/' + ${convidado.id}} "  >
-                                <i class="material-icons">delete</i> 
-                            </a>
+                     
+                            <a href="" data-toggle="modal" data-target="#modal-warning" th:attr="data-target='#modal-warning'+${convidado.id}">  <i class="material-icons">delete</i> </a>
+                            <!-- Modal to delete a Convidado-->
+                            <div class="modal modal-warning fade in" th:id="modal-warning+${convidado.id }" >
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span></button>
+                                            <h5 class="modal-title">Apagar Convidado?</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h3>Você tem certeza que deseja apagar esse convidado? <span th:text="${convidado.nome}"></span></h3>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
+                                            <a type="button" class="btn btn-outline" th:href="@{'/removerConvidado/' + ${evento.id} + '/' + ${convidado.id}}"><i class="fa fa-check"></i>&nbsp;Sim</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </td>
-
-
-
-                            
-
-
                     </tr>
                 </tbody>
             </table>
         </div>
+      
     </section>
+
+   
+
 </body>
 
 </html>

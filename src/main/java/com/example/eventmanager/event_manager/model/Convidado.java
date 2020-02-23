@@ -3,6 +3,8 @@ package com.example.eventmanager.event_manager.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
@@ -20,6 +22,9 @@ public class Convidado  implements Serializable{
     private static final long serialVersionUID = 1L;
    
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     @NotEmpty(message = "O RG não pode ser vazio")
     @Size(min=2, max=18, message = "Digite um RG válido")
     private String rg;
@@ -54,6 +59,14 @@ public class Convidado  implements Serializable{
 
     public void setEvento(Evento evento) {
         this.evento = evento;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
 

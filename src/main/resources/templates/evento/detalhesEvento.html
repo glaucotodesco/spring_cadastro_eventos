@@ -93,12 +93,24 @@
                     <tr>
                         <th scope="col">Nome</th>
                         <th scope="col">RG</th>
+                        <th scope="col">Remover</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="convidado: ${convidados}">
                         <td><span th:text="${convidado.nome}"></span></td>
                         <td><span th:text="${convidado.rg}"></span></td>
+                        <td>
+                            <a th:href="@{'/removerConvidado/' + ${evento.id} + '/' + ${convidado.id}} "  >
+                                <i class="material-icons">delete</i> 
+                            </a>
+                        </td>
+
+
+
+                            
+
+
                     </tr>
                 </tbody>
             </table>

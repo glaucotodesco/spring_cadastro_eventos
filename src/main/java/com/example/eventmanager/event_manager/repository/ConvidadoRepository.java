@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * ConvidadeRepository
  */
-public interface ConvidadoRepository extends JpaRepository<Convidado,String>{
+public interface ConvidadoRepository extends JpaRepository<Convidado,Long>{
 
     
 }

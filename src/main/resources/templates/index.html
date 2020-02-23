@@ -48,10 +48,31 @@
             <h3>Eventos Cadastrados</h3>
             <div class="card shadow-sm rounded" style="margin-top: 20px;" th:each="evento: ${eventos}">
                 <div class="card-body">
+                  
+                <div class="row">
+                   
+                    <div class="col">
                     <p class="card-title d-flex" style="font-weight: bold; color: black; padding-top: 5px;">
-                        <a th:href="@{'/evento/' + ${evento.id}}" class="d-flex"> <i
-                                class="material-icons">event</i>Evento: <span th:text="${evento.nome}"></span></a>
-                    </p>
+                        
+                      
+                        <a th:href="@{'/evento/' + ${evento.id}}" class="d-flex"> 
+                            <span class="material-icons">event</span>
+                            Evento: <span th:text="${evento.nome}"></span>
+                        </a>
+                    </p>   
+                    </div>
+
+                    <div class="col text-right ">
+                    <a th:href="@{'/removerEvento/' + ${evento.id}}"  >
+                            <i class="material-icons">delete</i> 
+                        </a>
+                    </div>   
+                        
+
+                       
+         
+                </div>
+                   
                     <p class="card-title d-flex"> <i class="material-icons">place</i>Local: <span
                             th:text="${evento.local}"></span></p>
                     <p class="card-title d-flex"> <i class="material-icons">date_range</i>Data:<span
@@ -63,8 +84,7 @@
         </div>
     </section>
 
-    
-
+ 
 
 </body>
 

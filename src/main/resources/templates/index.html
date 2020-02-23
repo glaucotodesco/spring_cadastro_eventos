@@ -2,71 +2,25 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    !-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-       
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-        
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-
+    <th:block th:include="fragments/head"></th:block>
     <title>Gerenciamento de Eventos</title>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a class="navbar-brand" href="/">Eventos</a>
-            <div class="navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/cadastrarEvento">
-                            <button class="btn btn-primary d-flex" type="button" data-toggle="collapse"
-                                data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                                aria-label="Toggle navigation">
-                                <i class="material-icons">add</i> <span>Novo</span>
-                            </button>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/evento">
-                            <button class="btn btn-primary d-flex" type="button" data-toggle="collapse"
-                                data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                                aria-label="Toggle navigation">
-                                <i class="material-icons">list</i> <span>Listar</span>
-                            </button>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-        </nav>
+        <th:block th:include="fragments/navBar"></th:block>
     </header>
 
     <section>
         <div class="container" style="padding-bottom: 30px">
             <h3>Eventos Cadastrados</h3>
+            <div th:insert="fragments/messageErro.html :: msg(text='Não é possível remover um evento com convidados!')"> </div>
             <div class="card shadow-sm rounded" style="margin-top: 20px;" th:each="evento: ${eventos}">
                 <div class="card-body">
-
                     <div class="row">
 
                         <div class="col">
                             <p class="card-title d-flex" style="font-weight: bold; color: black; padding-top: 5px;">
-
-
                                 <a th:href="@{'/evento/' + ${evento.id}}" class="d-flex">
                                     <span class="material-icons">event</span>
                                     Evento: <span th:text="${evento.nome}"></span>
@@ -119,9 +73,6 @@
             </div>
         </div>
     </section>
-
-
-
 </body>
 
 </html>

@@ -52,10 +52,18 @@ public class EventoController {
 
 
     @GetMapping("/removerEvento/{id}")
-    public String remover(@PathVariable long id)
+    public String remover(@PathVariable long id, RedirectAttributes attributes)
     {
         Evento evento = eventoRepository.findById(id).get();
-        eventoRepository.delete(evento);
+        if(evento.getConvidados().size() > 0)
+        {
+            attributes.addFlashAttribute("erro", "true");
+            System.out.println("Erro!!!!!!");
+        }
+        else{
+            eventoRepository.delete(evento);
+        }
+        
         return "redirect:/evento";
     }
 

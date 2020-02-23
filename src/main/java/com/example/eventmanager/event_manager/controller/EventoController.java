@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
-
 /**
  * EventoController
  */
@@ -28,42 +26,33 @@ public class EventoController {
     @Autowired
     private EventoRepository eventoRepository;
 
-  
     @GetMapping("/cadastrarEvento")
-    public String form(Model model) 
-    {
+    public String form(Model model) {
         model.addAttribute("evento", new Evento());
         return "evento/formEvento";
     }
 
     @PostMapping("/cadastrarEvento")
-    public String form(final @Valid Evento evento,  final BindingResult bindingResult, RedirectAttributes attributes) {
-        
+    public String form(final @Valid Evento evento, final BindingResult bindingResult, RedirectAttributes attributes) {
+
         if (bindingResult.hasErrors()) {
             return "/evento/formEvento";
-        }
-        else
-        {
+        } else {
             eventoRepository.save(evento);
             attributes.addFlashAttribute("sucesso", "true");
             return "redirect:/cadastrarEvento";
         }
     }
 
-
     @GetMapping("/removerEvento/{id}")
-    public String remover(@PathVariable long id, RedirectAttributes attributes)
-    {
+    public String remover(@PathVariable long id, RedirectAttributes attributes) {
         Evento evento = eventoRepository.findById(id).get();
-        if(evento.getConvidados().size() > 0)
-        {
+        if (evento.getConvidados().size() > 0) {
             attributes.addFlashAttribute("erro", "true");
-            System.out.println("Erro!!!!!!");
-        }
-        else{
+        } else {
             eventoRepository.delete(evento);
         }
-        
+
         return "redirect:/evento";
     }
 
@@ -74,7 +63,5 @@ public class EventoController {
         model.addObject("eventos", eventos);
         return model;
     }
-
-  
 
 }

@@ -6,11 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class DemoApplicationTests {
 
-	/*
-
-	TODO: sdfasdfasdfasfasfasfas
-	*/
-
 	@Test
 	void contextLoads() {
 	}

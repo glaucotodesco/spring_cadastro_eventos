@@ -13,7 +13,10 @@
 
     <section>
         <div class="container" style="padding-bottom: 30px">
-            <h3>Eventos Cadastrados</h3>
+
+            <h3>User: admin</h3>
+            <h3>PWD: 123</h3>
+
             <div th:insert="fragments/messageErro.html :: msg(text='Não é possível remover um evento com convidados!')"> </div>
             <div class="card shadow-sm rounded" style="margin-top: 20px;" th:each="evento: ${eventos}">
                 <div class="card-body">
